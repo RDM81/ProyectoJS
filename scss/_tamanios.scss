@@ -1,0 +1,63 @@
+*{
+    font-size: 62.5%;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+    *{
+        font-size:95%;
+        
+        .album_position{
+            display: flex;
+            flex-direction: column;
+            
+        }
+        .marginMenu_right{
+            margin-right: 5px;
+        }
+        .paddingVista_mobil{
+            padding: 0%;
+        }
+        .margenesVista_mobil{
+            display:flex;
+            justify-content: center;
+            margin: 0%;
+        }
+        .menuVista_mobil{
+            justify-content:center;
+            margin-left: 0%;
+            margin-right: 0%;
+        }
+        .mainHeader_vistaMobil{
+            margin: 50% 0;
+        }
+        
+    }
+}
+
+@media only screen and (min-width:768px) {
+    *{
+        font-size: 100%;
+    }
+}
+$parrafo:1rem;
+$h1:2rem;
+$menuTipo:1rem;
+$tituloSecundario:1rem;
+
+.parrafo_tamanio{font-size:$parrafo;}
+.titulo_tamanio{font-size:$h1;}
+.titulo_tamanio2{font-size:$tituloSecundario;}
+
+.margin_general{
+    margin-top: 20px;
+}
+
+.margin_redes{
+    margin-top: 5px;
+    
+}
+.marginAbajo_redes{
+    margin-bottom: 10px;
+}
+
+
