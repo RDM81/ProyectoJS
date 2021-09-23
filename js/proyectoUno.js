@@ -21,7 +21,8 @@ const musicas=[
 { id: 8, nombreVinilo: 'Roberto Di Maggio @ MBP Abril 2021', precioVinilo: 100 }, 
 ];
 
-
+const result = document.getElementById("Result")
+const resultPrecio = document.getElementById("ResultPrecio")
 
 // Ingreso y Proceso de Datos 
 
@@ -32,10 +33,12 @@ while (entradaUsuario >0) {
     if (entradaUsuario <=8) {
 
         const buscarVinilo = musicas.find(nombreVinilo => nombreVinilo.id === entradaUsuario);
-        console.log(buscarVinilo);
+        localStorage.setItem('ejemploJSON', JSON.stringify(buscarVinilo));
+        console.log(localStorage.getItem('ejemploJSON'));
+        console.log(JSON.parse(localStorage.getItem('ejemploJSON')));
 
-        alert('El Vinilo Seleccionado es: \n' +  buscarVinilo.nombreVinilo + "\n Precio: $"+ buscarVinilo.precioVinilo);
-    
+        result.textContent = ` Nombre: ${buscarVinilo.nombreVinilo}`;
+        resultPrecio.textContent = `Precio: $ ${buscarVinilo.precioVinilo}`;
     } else{
         alert("El Vinilo No Existe");
     }
