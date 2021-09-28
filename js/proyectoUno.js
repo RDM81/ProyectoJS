@@ -27,7 +27,7 @@ for (const Vinilo of musicas) {
                                 <div class="card-body">
                                     <img src="../assets/Imagenes/Fotos/vinilo.jpg" class="card-img-top" alt="Dj Dash Berlin & Roberto Di Maggio Pacha Buenos Aires 2010">
                                         <h5 class="card-text">${Vinilo.nombreVinilo}</h5>
-                                        <p class="card-text">${Vinilo.precioVinilo}</p>
+                                        <p class="card-text"> Precio: $ ${Vinilo.precioVinilo}</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="">
                                                     <button id=' ${Vinilo.id} ${Vinilo.nombreVinilo} ${Vinilo.precioVinilo}' class = 'btnBUY'>BUY</button>
