@@ -30,9 +30,9 @@ const result = document.getElementById("Result");
 const resultPrecio = document.getElementById("ResultPrecio");
 
 
-let botones= document.getElementsByClassName('btnBUY')
+let botonBuy= document.getElementsByClassName('btnBUY')
 
-for (const boton of botones) {
+for (const boton of botonBuy) {
     boton.addEventListener('click', function () {
         console.log('el producto seleccionado es ' +this.id);
         result.textContent = ` Producto seleccionado: ${this.id}`;
