@@ -19,11 +19,26 @@ const musicas=[
     { id: 8, nombreVinilo: 'Roberto Di Maggio @ MBP Abril 2021', precioVinilo: 100 }, 
     ];
 
+const contenedorMaestro = document.getElementById("cardsMusica");
 
 for (const Vinilo of musicas) {
     let divProducto = document.createElement('div');
-    divProducto.innerHTML = `<button id='${Vinilo.nombreVinilo} ${Vinilo.precioVinilo}  ' class = 'btnBUY'>BUY</button>`;
-document.body.appendChild(divProducto); 
+    divProducto.innerHTML = `<div class="card mb-4 shadow-sm">
+                                <div class="card-body">
+                                    <img src="../assets/Imagenes/Fotos/vinilo.jpg" class="card-img-top" alt="Dj Dash Berlin & Roberto Di Maggio Pacha Buenos Aires 2010">
+                                        <h5 class="card-text">${Vinilo.nombreVinilo}</h5>
+                                        <p class="card-text">${Vinilo.precioVinilo}</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="">
+                                                    <button id=' ${Vinilo.id} ${Vinilo.nombreVinilo} ${Vinilo.precioVinilo}' class = 'btnBUY'>BUY</button>
+                                                </div>
+                                                        <small class="text-muted">Stock 3</small>
+                                            </div>
+                                </div>
+                            </div>
+                                        `;
+
+contenedorMaestro.appendChild(divProducto); 
 }
 
 const result = document.getElementById("Result");
