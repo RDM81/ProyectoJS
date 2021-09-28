@@ -22,9 +22,7 @@ const musicas=[
 
 for (const Vinilo of musicas) {
     let divProducto = document.createElement('div');
-    divProducto.innerHTML = `<h3> Nombre: ${Vinilo.nombreVinilo} </h3>
-                            <p> Precio: ${Vinilo.precioVinilo} </p>
-                            <button id='${Vinilo.nombreVinilo} ${Vinilo.precioVinilo}  ' class = 'btnBUY'>BUY</button>`;
+    divProducto.innerHTML = `<button id='${Vinilo.nombreVinilo} ${Vinilo.precioVinilo}  ' class = 'btnBUY'>BUY</button>`;
 document.body.appendChild(divProducto); 
 }
 
