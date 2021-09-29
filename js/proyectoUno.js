@@ -75,8 +75,8 @@ function carritoMusica(carrito) {
 
 
     for (const Vinilo of carrito) {
-        $("#carritoProducto").append(`<p> ${Vinilo.nombreVinilo}   <p>
-                                    <p> Precio: ${Vinilo.precioVinilo}
+        $("#carritoProducto").append(`<p> ${Vinilo.nombreVinilo}   </p>
+                                    <p> Precio: ${Vinilo.precioVinilo}  </p>
                                     `);
         
     }
