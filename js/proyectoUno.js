@@ -19,67 +19,65 @@ const musicas=[
     { id: 8, nombreVinilo: 'Roberto Di Maggio @ MBP Abril 2021', precioVinilo: 100 }, 
     ];
 
+const carrito = [];
+
 const contenedorMaestro = document.getElementById("cardsMusica");
+
 
 for (const Vinilo of musicas) {
     let divProducto = document.createElement('div');
     divProducto.innerHTML = `<div class="card mb-4 shadow-sm">
                                 <div class="card-body">
-                                    <img src="../assets/Imagenes/Fotos/vinilo.jpg" class="card-img-top" alt="Dj Dash Berlin & Roberto Di Maggio Pacha Buenos Aires 2010">
-                                        <h5 class="card-text">${Vinilo.nombreVinilo}</h5>
-                                        <p class="card-text"> Precio: $ ${Vinilo.precioVinilo}</p>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="">
-                                                    <button id=' ${Vinilo.id} ${Vinilo.nombreVinilo} ${Vinilo.precioVinilo}' class = 'btnBUY'>BUY</button>
-                                                </div>
-                                                        <small class="text-muted">Stock 3</small>
-                                            </div>
+                                    <img src="../assets/Imagenes/Fotos/vinilo.jpg" class="card-img-top" alt="Vinilo">
+                                    <h5 class="card-text">${Vinilo.nombreVinilo}</h5>
+                                    <p class="card-text"> Precio: $ ${Vinilo.precioVinilo}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="#" id=' ${Vinilo.id} ' class="btn btn-sm btn-outline-secondary btnBUY">BUY</a>
                                 </div>
-                            </div>
-                                        `;
+                                    <small class="text-muted">Stock 3</small>
+                                </div>
+                            </div>`;
+contenedorMaestro.appendChild(divProducto);
 
-contenedorMaestro.appendChild(divProducto); 
 }
 
 const result = document.getElementById("Result");
 const resultPrecio = document.getElementById("ResultPrecio");
 
 
-let botonBuy= document.getElementsByClassName('btnBUY')
+let botonBuy= $(".btnBUY");
 
 for (const boton of botonBuy) {
-    boton.addEventListener('click', function () {
-        console.log('el producto seleccionado es ' +this.id);
-        result.textContent = ` Producto seleccionado: ${this.id}`;
+    boton.onclick = comprarProducto;
+        // localStorage.setItem('ejemploJSON', JSON.stringify(botonBuy));
+        // console.log(localStorage.getItem('ejemploJSON'));
+        // console.log(JSON.parse(localStorage.getItem('ejemploJSON')));
+        // result.textContent = ` Producto seleccionado: ${this.id}`;
         
-    });
+    ;
+}
+
+function comprarProducto(event) {
+    event.preventDefault();
+
+    let encontrado=musicas.find(Vinilo => Vinilo.id == event.target.id);
+    localStorage.setItem('idProducto', JSON.stringify(encontrado));
+
+    carrito.push(encontrado);
+    carritoMusica(carrito);
+
+}
+
+function carritoMusica(carrito) {
+    $("#carritoCantidad").html(carrito.length);
+
+    for (const Vinilo of carrito) {
+        $("#CarritoProductos").append(`<p> ${Vinilo.nombreVinilo} - ${Vinilo.precioVinilo} <p>`);
+        
+    }
+
 }
 
 
 
-
-// miBoton.addEventListener('click', );
-
-// Ingreso y Proceso de Datos 
-
-// let entradaUsuario= parseInt(prompt("Ingrese el numero del Vinilo elegido \n\n (1) Stadium Catch Four - Roberto Di Maggio & Damian Dp Mashup \n (2) Chakarita Gate - Roberto Di Maggio & Damian Dp Mashup \n (3) Never Need To Feel Loved - Roberto Di Maggio Mashup \n (4) On Sandstorm - Roberto Di Maggio Mashup \n (5) Washout Falling What - Roberto Di Maggio Mashup \n (6) Lethal Stadium Four - Roberto Di Maggio Mashup \n (7) SH Party 2021 \n (8) MBP Party 2021 \n\n (0) Salir"));
-
-// while (entradaUsuario >0) {
-
-//     if (entradaUsuario <=8) {
-
-//         const buscarVinilo = musicas.find(nombreVinilo => nombreVinilo.id === entradaUsuario);
-//         localStorage.setItem('ejemploJSON', JSON.stringify(buscarVinilo));
-//         console.log(localStorage.getItem('ejemploJSON'));
-//         console.log(JSON.parse(localStorage.getItem('ejemploJSON')));
-
-
-//         result.textContent = ` Nombre: ${buscarVinilo.nombreVinilo}`;
-//         resultPrecio.textContent = `Precio: $ ${buscarVinilo.precioVinilo}`;
-//     } else{
-//         alert("El Vinilo No Existe");
-//     }
-    
-//     entradaUsuario= parseInt(prompt("Ingrese el numero del Vinilo elegido \n\n (1) Stadium Catch Four - Roberto Di Maggio & Damian Dp Mashup \n (2) Chakarita Gate - Roberto Di Maggio & Damian Dp Mashup \n (3) Never Need To Feel Loved - Roberto Di Maggio Mashup \n (4) On Sandstorm - Roberto Di Maggio Mashup \n (5) Washout Falling What - Roberto Di Maggio Mashup \n (6) Lethal Stadium Four - Roberto Di Maggio Mashup \n (7) SH Party 2021 \n (8) MBP Party 2021 \n\n (0) Salir"));
-
-// }
