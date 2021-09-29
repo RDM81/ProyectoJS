@@ -42,23 +42,18 @@ contenedorMaestro.appendChild(divProducto);
 
 }
 
-const result = document.getElementById("Result");
-const resultPrecio = document.getElementById("ResultPrecio");
+// const result = document.getElementById("Result");
+// const resultPrecio = document.getElementById("ResultPrecio");
 
 
 let botonBuy= $(".btnBUY");
 
 for (const boton of botonBuy) {
-    boton.onclick = comprarProducto;
-        // localStorage.setItem('ejemploJSON', JSON.stringify(botonBuy));
-        // console.log(localStorage.getItem('ejemploJSON'));
-        // console.log(JSON.parse(localStorage.getItem('ejemploJSON')));
-        // result.textContent = ` Producto seleccionado: ${this.id}`;
-        
-    ;
+    boton.onclick = compraVinilo;
+
 }
 
-function comprarProducto(event) {
+function compraVinilo(event) {
     event.preventDefault();
 
     let encontrado=musicas.find(Vinilo => Vinilo.id == event.target.id);
