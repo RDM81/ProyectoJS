@@ -38,11 +38,12 @@ for (const Vinilo of musicas) {
                                     <small class="text-muted">Stock 3</small>
                                 </div>
                             </div>`;
+
 contenedorMaestro.appendChild(divProducto);
 
 }
 
-let botonBuy= $(".btnBUY");
+let botonBuy= jQuery(".btnBUY");
 
 for (const boton of botonBuy) {
     boton.onclick = compraVinilo;
@@ -61,12 +62,12 @@ function compraVinilo(event) {
 }
 
 function carritoMusica(carrito) {
-    $("#carritoCantidad").html(carrito.length);
-    $("#carritoProducto").empty();
+    jQuery("#carritoCantidad").html(carrito.length);
+    jQuery("#carritoProducto").empty();
 
 
     for (const Vinilo of carrito) {
-        $("#carritoProducto").append(`<p> ${Vinilo.nombreVinilo}   </p>
+        jQuery("#carritoProducto").append(`<p> ${Vinilo.nombreVinilo}   </p>
                                     <p> Precio: ${Vinilo.precioVinilo}  </p>
                                     `);
         
