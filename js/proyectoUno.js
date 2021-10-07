@@ -42,10 +42,6 @@ contenedorMaestro.appendChild(divProducto);
 
 }
 
-// const result = document.getElementById("Result");
-// const resultPrecio = document.getElementById("ResultPrecio");
-
-
 let botonBuy= $(".btnBUY");
 
 for (const boton of botonBuy) {
