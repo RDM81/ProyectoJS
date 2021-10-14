@@ -1,2 +1,1 @@
-const musicas = [];
-const carrito = [];
+
