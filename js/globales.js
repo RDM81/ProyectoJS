@@ -1,0 +1,2 @@
+const musicas = [];
+const carrito = [];

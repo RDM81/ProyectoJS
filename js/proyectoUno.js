@@ -3,6 +3,7 @@ class Vinilo {
         this.id = id;
         this.nombreVinilo = nombreVinilo;
         this.precioVinilo = precioVinilo;
+        
         this.compraVinilos = function (valor) {
             return 'Nombre: ' + this.nombreVinilo + ' \n Precio: $' + this.precioVinilo;
         };
