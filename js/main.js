@@ -19,18 +19,26 @@ class Vinilo {
 
 const musicas = [];
 
-musicas.push(new Vinilo(1, "Kosheen vs Lange vs Andy Moor - Stadium Catch Four (Roberto Di Maggio & Damian Dp Mashup)", 250, "../assets/Imagenes/Fotos/vinilo.jpg"));
-musicas.push(new Vinilo(2, "Wippenberg vs Mark Vision - Chakarita Gate (Roberto Di Maggio & Damian Dp Mashup)", 350, "../assets/Imagenes/Fotos/vinilo.jpg"));
-musicas.push(new Vinilo(3, "Roc Project vs. Reflekt - Never Need To Feel Loved (Roberto Di Maggio Mashup)", 350, "../assets/Imagenes/Fotos/vinilo.jpg"));
-musicas.push(new Vinilo(4, "Darude vs Cirez D - On Sandstorm (Roberto Di Maggio Mashup)", 200, "../assets/Imagenes/Fotos/vinilo.jpg"));
-musicas.push(new Vinilo(5, "Bissen vs Albert Vorme - Washout Falling What (Roberto Di Maggio Mashup)", 150, "../assets/Imagenes/Fotos/vinilo.jpg"));
-musicas.push(new Vinilo(6, "Tiesto vs. Andy Moor - Lethal Stadium Four (Roberto Di Maggio Mashup)", 450, "../assets/Imagenes/Fotos/vinilo.jpg"));
-musicas.push(new Vinilo(7, "Roberto Di Maggio @ SH Party 2021", 100, "../assets/Imagenes/Fotos/vinilo.jpg"));
-musicas.push(new Vinilo(8, "Roberto Di Maggio @ MBP Abril 2021", 150, "../assets/Imagenes/Fotos/vinilo.jpg"));
+// musicas.push(new Vinilo(1, "Kosheen vs Lange vs Andy Moor - Stadium Catch Four (Roberto Di Maggio & Damian Dp Mashup)", 250, "../assets/Imagenes/Fotos/vinilo.jpg"));
+// musicas.push(new Vinilo(2, "Wippenberg vs Mark Vision - Chakarita Gate (Roberto Di Maggio & Damian Dp Mashup)", 350, "../assets/Imagenes/Fotos/vinilo.jpg"));
+// musicas.push(new Vinilo(3, "Roc Project vs. Reflekt - Never Need To Feel Loved (Roberto Di Maggio Mashup)", 350, "../assets/Imagenes/Fotos/vinilo.jpg"));
+// musicas.push(new Vinilo(4, "Darude vs Cirez D - On Sandstorm (Roberto Di Maggio Mashup)", 200, "../assets/Imagenes/Fotos/vinilo.jpg"));
+// musicas.push(new Vinilo(5, "Bissen vs Albert Vorme - Washout Falling What (Roberto Di Maggio Mashup)", 150, "../assets/Imagenes/Fotos/vinilo.jpg"));
+// musicas.push(new Vinilo(6, "Tiesto vs. Andy Moor - Lethal Stadium Four (Roberto Di Maggio Mashup)", 450, "../assets/Imagenes/Fotos/vinilo.jpg"));
+// musicas.push(new Vinilo(7, "Roberto Di Maggio @ SH Party 2021", 100, "../assets/Imagenes/Fotos/vinilo.jpg"));
+// musicas.push(new Vinilo(8, "Roberto Di Maggio @ MBP Abril 2021", 150, "../assets/Imagenes/Fotos/vinilo.jpg"));
+
+$.get("../data/musicas.json", function (respuesta, estado){
+    for (const objeto of respuesta) {
+        musicas.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.cantidad))
+    }
+
+    productosUI(musicas, '#cardsMusica');
+});
 
 const carrito = [];
 
-productosUI(musicas, '#cardsMusica');
+
 
 function productosUI(musicas, id) {
     $(id).empty();
@@ -58,15 +66,15 @@ function comprarVinilo(event) {
     const idVinilo   = event.target.id;
     const existe=carrito.find(Vinilo => Vinilo.id ==idVinilo);
 
-    if (existe == undefined) {
+        if (existe == undefined) {
+            
+            const encontrado = musicas.find(Vinilo => Vinilo.id == idVinilo);
+            carrito.push(encontrado);    
+        }else{
+            existe.agregarCantidad(1);
+        }
         
-        const encontrado = musicas.find(Vinilo => Vinilo.id == idVinilo);
-        carrito.push(encontrado);    
-      }else{
-        existe.agregarCantidad(1);
-      }
-     
-    carritoMusica(carrito);
+        carritoMusica(carrito);
 
 }
 
@@ -87,11 +95,29 @@ function carritoMusica(musicas) {
                                     Subtotal: ${Vinilo.subtotal()}</span>                                
                                     
                                     
-                                    </p>`)
+                                    </p>`);
         
     }
 
+    $('#carritoProducto').append(`<button id="btnConfirmar">Confirmar</button>`);
+    $("#btnConfirmar").on("click",enviarCompra);
 }
+    function enviarCompra() {
+    
+    $.post("https://jsonplaceholder.typicode.com/posts",JSON.stringify(carrito),function(respuesta,estado) {
+        
+        
+        if(estado == "success"){
+        
+        $('#carritoProducto').empty();
+        
+        $('#carritoCantidad').html("0");
+        }else{
+        
+        }    
+
+    })  
+    }
 
 $(document).ready(function () {
     console.log('Dom Listo');  
