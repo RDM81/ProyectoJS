@@ -60,13 +60,9 @@ for (const Vinilo of musicas) {
                         
                     </div>
                     </div>
-                </div>
-    
-    
-    `);
-
-
+                </div>`);
 }
+$(".btnBUY").click(comprarVinilo);
 }
 
 function comprarVinilo(event) {
@@ -102,14 +98,16 @@ function carritoMusica(musicas) {
                                     <span class="badge badge-warning">
                                     Subtotal: ${Vinilo.subtotal()}</span>                                
                                     <span class="badge badge-warning">
-                                    Total: ${Vinilo.precioTotal()}</span> 
+                                    Total: ${Vinilo.precioTotal()}</span>  
                                     
                                     </p>`);
         
     }
 
     $('#carritoProducto').append(`<button id="btnConfirmar">Confirmar</button>`);
-    $("#btnConfirmar").on("click",enviarCompra);
+    $("#btnConfirmar").on("click",enviarCompra,function () {
+        alert("Gracias por la compra");
+    });
 }
     function enviarCompra() {
     
@@ -131,11 +129,13 @@ function carritoMusica(musicas) {
 $(document).ready(function () {
     console.log('Dom Listo');  
     
-    $(".btnBUY").click(comprarVinilo);
-
+    
 
     
 });
+
 $(window).on('load',function () {    
     $("#espera").remove();    
 });
+
+
