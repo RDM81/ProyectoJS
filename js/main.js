@@ -19,6 +19,7 @@ class Vinilo {
     precioTotal=()=>{
         let totalReduce = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
         document.getElementById('total').innerText = totalReduce
+        return totalReduce;
     }
 
 }
@@ -106,7 +107,7 @@ function carritoMusica(musicas) {
 
     $('#carritoProducto').append(`<button id="btnConfirmar">Confirmar</button>`);
     $("#btnConfirmar").on("click",enviarCompra,function () {
-        alert("Gracias por la compra");
+        alert("SHOPIN SE LA COME");
     });
 }
     function enviarCompra() {
