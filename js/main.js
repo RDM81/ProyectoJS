@@ -105,9 +105,22 @@ function carritoMusica(musicas) {
         
     }
 
-    $('#carritoProducto').append(`<button id="btnConfirmar">Confirmar</button>`);
+    $('#carritoProducto').append(`<button id="btnConfirmar">Confirmar Compra</button>`);
     $("#btnConfirmar").on("click",enviarCompra,function () {
-        alert("SHOPIN SE LA COME");
+        Toastify({
+            text: "Gracias por la compra",
+            duration: 3000,
+            
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "center",
+            stopOnFocus: true,
+            style: {
+            background: "black",
+            },
+            onClick: function(){}
+        }).showToast();
     });
 }
     function enviarCompra() {
