@@ -79,6 +79,23 @@ function comprarVinilo(event) {
             existe.agregarCantidad(1);
         }
         
+        $(".btnBUY").on("click",enviarCompra,function () {
+            Toastify({
+                text: "El producto se añadio al carrito",
+                duration: 3000,
+                
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "center",
+                stopOnFocus: true,
+                style: {
+                background: "black",
+                },
+                onClick: function(){}
+            }).showToast();
+        });
+
         carritoMusica(carrito);
 
 }
