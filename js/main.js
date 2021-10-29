@@ -1,10 +1,11 @@
 class Vinilo {
-    constructor(id, nombre, precio, img) {
+    constructor(id, nombre, precio, img, genero) {
         this.id = parseInt(id);
         this.nombre = nombre;
         this.precio = parseFloat(precio);
         this.img = img;
-        this.cantidad= 1;
+        this.cantidad = 1;
+        this.genero = genero;
         
     }
     agregarCantidad(valor){
@@ -28,16 +29,17 @@ const musicas = [];
 
 
 
+
 $.get("../data/musicas.json", function (respuesta, estado){
     for (const objeto of respuesta) {
-        musicas.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.cantidad))
+        musicas.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.cantidad, objeto.genero))
     }
 
     productosUI(musicas, '#cardsMusica');
 });
 3
 const carrito = [];
-
+const generos = ['TRANCE', 'PROGRESSIVE TRANCE', 'OLDSCHOOL'];
 
 
 function productosUI(musicas, id) {
@@ -53,7 +55,7 @@ for (const Vinilo of musicas) {
                         <div class="card-body">
                         <h5 class="card-title">${Vinilo.nombre}</h5>
                         <p class="card-text">Precio: $ ${Vinilo.precio}</p>
-                        <p class="card-text"><small class="text-muted">Stock 4</small></p>
+                        <p class="card-text">Genero: ${Vinilo.genero}</p>
                         <div class="btn-group">
                             <a href="#" id=' ${Vinilo.id} ' class="btn btn-sm  btn-outline-secondary btnBUY">BUY</a>
                         </div>
@@ -133,6 +135,7 @@ function carritoMusica(musicas) {
                                     <span class="badge badge-warning">
                                     Cantidad: ${Vinilo.cantidad}</span>
                                     <span class="badge badge-warning">
+                                    
                                     Subtotal: ${Vinilo.subtotal()}</span>                                
                                     <span class="badge badge-warning">
                                     Total: ${Vinilo.precioTotal()}</span>  
