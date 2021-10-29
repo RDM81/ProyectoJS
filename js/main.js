@@ -19,7 +19,7 @@ class Vinilo {
     
     precioTotal=()=>{
         let totalReduce = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
-        document.getElementById('total').innerText = totalReduce
+        
         return totalReduce;
     }
 
@@ -30,11 +30,11 @@ const generos = ['Trance', 'Progressive Trance', 'Oldshool', 'Progressive House'
 const carrito = [];
 
 
-$.get("../data/musicas.json", function (datos, estado){
+$.get("../data/musicas.json", function (respuesta, estado){
 
     if(estado == "success"){
 
-    for (const objeto of datos) {
+    for (const objeto of respuesta) {
         musicas.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.genero, objeto.cantidad))
         
     }
@@ -146,13 +146,14 @@ function carritoMusica(musicas) {
                                     Subtotal: ${Vinilo.subtotal()}</span>                                
                                     <span class="badge badge-warning">
                                     Total: ${Vinilo.precioTotal()}</span>
-                                    
+                                    <button id="${Vinilo.id}" class="btn btn-light btn-delete"> x </button>
                                     </p>`);
         
     }
 
     $('#carritoProducto').append(`<button id="btnConfirmar">Confirmar Compra</button>`);
     $("#btnConfirmar").on("click",enviarCompra,function () {
+        
         Toastify({
             text: "Gracias por la compra",
             duration: 3000,
@@ -174,7 +175,7 @@ function carritoMusica(musicas) {
 
     function enviarCompra() {
     
-    $.post("https://jsonplaceholder.typicode.com/posts",JSON.stringify(carrito),function(dato,estado) {
+    $.post("https://jsonplaceholder.typicode.com/posts",JSON.stringify(carrito),function(respuesta,estado) {
         
         
         if(estado == "success"){
