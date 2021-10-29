@@ -26,20 +26,27 @@ class Vinilo {
 }
 
 const musicas = [];
-
+const generos = ['TRANCE', 'PROGRESSIVE TRANCE', 'OLDSCHOOL'];
 
 
 
 $.get("../data/musicas.json", function (respuesta, estado){
+
+    if(estado == "success"){
+
     for (const objeto of respuesta) {
         musicas.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.cantidad, objeto.genero))
+        
     }
 
     productosUI(musicas, '#cardsMusica');
+}else{
+    console.log('NO HAY CARGA DE DATOS');
+}  
 });
-3
+
 const carrito = [];
-const generos = ['TRANCE', 'PROGRESSIVE TRANCE', 'OLDSCHOOL'];
+
 
 
 function productosUI(musicas, id) {
