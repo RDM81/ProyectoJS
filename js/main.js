@@ -26,15 +26,15 @@ class Vinilo {
 }
 
 const musicas = [];
-const generos = ['TRANCE', 'PROGRESSIVE TRANCE', 'OLDSCHOOL'];
+const generos = ['Trance', 'Progressive Trance', 'Oldshool', 'Progressive House'];
 
 
 
-$.get("../data/musicas.json", function (respuesta, estado){
+$.get("../data/musicas.json", function (datos, estado){
 
     if(estado == "success"){
 
-    for (const objeto of respuesta) {
+    for (const objeto of datos) {
         musicas.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.genero, objeto.cantidad))
         
     }
@@ -47,7 +47,16 @@ $.get("../data/musicas.json", function (respuesta, estado){
 
 const carrito = [];
 
-
+$(document).ready(function () {
+    if("carrito" in localStorage)
+        const dato= JSON.parse(localStorage.getItem('carrito'));
+        for (const objeto of dato) {
+            carrito.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.genero, objeto.cantidad))
+            
+        }
+        carritoMusica(carrito);
+    
+});
 
 function productosUI(musicas, id) {
     $(id).empty();
@@ -83,52 +92,56 @@ function comprarVinilo(event) {
         if (existe == undefined) {
             
             const encontrado = musicas.find(Vinilo => Vinilo.id == idVinilo);
+            
             carrito.push(encontrado);    
         }else{
             existe.agregarCantidad(1);
         }
-        
-        
-
+        localStorage.setItem('carrito', JSON.stringify(carrito));
         carritoMusica(carrito);
 
-        let btnBUY = document.querySelectorAll('.btnBUY')
-
-    btnBUY.forEach(x=>{
-        x.addEventListener('click',()=>{
             Toastify({
-                        text: "El producto se añadio al carrito",
-                        duration: 1500,
-                        newWindow: true,
-                        close: true,
-                        gravity: "top",
-                        position: "center",
-                        stopOnFocus: true,
-                        style: {
-                        background: "black",
-                        },
-                        onClick: function(){}
-                    }).showToast();
-        })
-    })
-        // $(".btnBUY").on("click",enviarCompra,function () {
-        //     Toastify({
-        //         text: "El producto se añadio al carrito",
-        //         duration: 1500,
-        //         newWindow: true,
-        //         close: true,
-        //         gravity: "top",
-        //         position: "center",
-        //         stopOnFocus: true,
-        //         style: {
-        //         background: "black",
-        //         },
-        //         onClick: function(){}
-        //     }).showToast();
-        // });
+                text: "El producto se añadio al carrito",
+                duration: 1500,
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "center",
+                stopOnFocus: true,
+                style: {
+                background: "black",
+                },
+                onClick: function(){}
+            }).showToast();
+        };
+
+// SELECTOR DE CATEGORIAS
+
+function selectUI(lista,selector) {
+    $(selector).empty();
+    for (const genero of lista) {
+        $(selector).append(`<option>${genero}</option>`);
+    }
+    
+    $(selector).prepend(`<option selected>ALL</option>`);
 }
 
-// FUNCION INTERFAZ CARRITO
+selectUI(generos,"#seleccionGenero");
+
+$("#seleccionGenero").on("change", buscarGenero)
+
+function buscarGenero() {
+    
+    if(this.value != "ALL"){
+        let seleccionados= musicas.filter(Vinilo => Vinilo.genero == this.value);
+        productosUI(seleccionados,"#cardsMusica");
+
+    }else{
+        productosUI(musicas, "#cardsMusica");
+    }
+}
+
+// INTERFAZ CARRITO
 
 function carritoMusica(musicas) {
     $("#carritoCantidad").html(musicas.length);
@@ -144,10 +157,11 @@ function carritoMusica(musicas) {
                                     <span class="badge badge-warning">
                                     
                                     Subtotal: ${Vinilo.subtotal()}</span>                                
-                                    <span class="badge badge-warning">
-                                    Total: ${Vinilo.precioTotal()}</span>  
                                     
-                                    </p>`);
+                                    
+                                    </p>
+                                    <p>  <span class="badge badge-warning">
+                                    Total: ${Vinilo.precioTotal()}</span></p> `);
         
     }
 
@@ -156,7 +170,6 @@ function carritoMusica(musicas) {
         Toastify({
             text: "Gracias por la compra",
             duration: 3000,
-            
             newWindow: true,
             close: true,
             gravity: "top",
@@ -180,17 +193,20 @@ function carritoMusica(musicas) {
         
         $('#carritoCantidad').html("0");
         }else{
-        
+            console.log('NO SE ENVIARON LOS DATOS');
         }    
 
     })  
     }
 
 $(document).ready(function () {
-    console.log('Dom Listo');  
-    
-    
-
+    if("carrito" in localStorage)
+        const datos= JSON.parse(localStorage.getItem('carrito'));
+        for (const objeto of datos) {
+            carrito.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.genero, objeto.cantidad))
+            
+        }
+        carritoMusica(carrito);
     
 });
 
