@@ -35,7 +35,7 @@ $.get("../data/musicas.json", function (respuesta, estado){
 
     productosUI(musicas, '#cardsMusica');
 });
-
+3
 const carrito = [];
 
 
@@ -79,25 +79,44 @@ function comprarVinilo(event) {
             existe.agregarCantidad(1);
         }
         
-        $(".btnBUY").on("click",enviarCompra,function () {
-            Toastify({
-                text: "El producto se añadio al carrito",
-                duration: 3000,
-                
-                newWindow: true,
-                close: true,
-                gravity: "top",
-                position: "center",
-                stopOnFocus: true,
-                style: {
-                background: "black",
-                },
-                onClick: function(){}
-            }).showToast();
-        });
+        
 
         carritoMusica(carrito);
 
+        let btnBUY = document.querySelectorAll('.btnBUY')
+
+    btnBUY.forEach(x=>{
+        x.addEventListener('click',()=>{
+            Toastify({
+                        text: "El producto se añadio al carrito",
+                        duration: 1500,
+                        newWindow: true,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        stopOnFocus: true,
+                        style: {
+                        background: "black",
+                        },
+                        onClick: function(){}
+                    }).showToast();
+        })
+    })
+        // $(".btnBUY").on("click",enviarCompra,function () {
+        //     Toastify({
+        //         text: "El producto se añadio al carrito",
+        //         duration: 1500,
+        //         newWindow: true,
+        //         close: true,
+        //         gravity: "top",
+        //         position: "center",
+        //         stopOnFocus: true,
+        //         style: {
+        //         background: "black",
+        //         },
+        //         onClick: function(){}
+        //     }).showToast();
+        // });
 }
 
 // FUNCION INTERFAZ CARRITO
