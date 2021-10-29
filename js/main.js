@@ -35,7 +35,7 @@ $.get("../data/musicas.json", function (respuesta, estado){
     if(estado == "success"){
 
     for (const objeto of respuesta) {
-        musicas.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.cantidad, objeto.genero))
+        musicas.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.genero, objeto.cantidad))
         
     }
 
@@ -77,7 +77,7 @@ $(".btnBUY").click(comprarVinilo);
 
 function comprarVinilo(event) {
     event.preventDefault();
-    const idVinilo   = event.target.id;
+    const idVinilo  = event.target.id;
     const existe=carrito.find(Vinilo => Vinilo.id ==idVinilo);
 
         if (existe == undefined) {
