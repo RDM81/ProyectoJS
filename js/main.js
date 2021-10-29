@@ -27,7 +27,7 @@ class Vinilo {
 
 const musicas = [];
 const generos = ['Trance', 'Progressive Trance', 'Oldshool', 'Progressive House'];
-
+const carrito = [];
 
 
 $.get("../data/musicas.json", function (datos, estado){
@@ -43,19 +43,6 @@ $.get("../data/musicas.json", function (datos, estado){
 }else{
     console.log('NO HAY CARGA DE DATOS');
 }  
-});
-
-const carrito = [];
-
-$(document).ready(function () {
-    if("carrito" in localStorage)
-        const dato= JSON.parse(localStorage.getItem('carrito'));
-        for (const objeto of dato) {
-            carrito.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.genero, objeto.cantidad))
-            
-        }
-        carritoMusica(carrito);
-    
 });
 
 function productosUI(musicas, id) {
@@ -157,11 +144,10 @@ function carritoMusica(musicas) {
                                     <span class="badge badge-warning">
                                     
                                     Subtotal: ${Vinilo.subtotal()}</span>                                
+                                    <span class="badge badge-warning">
+                                    Total: ${Vinilo.precioTotal()}</span>
                                     
-                                    
-                                    </p>
-                                    <p>  <span class="badge badge-warning">
-                                    Total: ${Vinilo.precioTotal()}</span></p> `);
+                                    </p>`);
         
     }
 
@@ -182,9 +168,13 @@ function carritoMusica(musicas) {
         }).showToast();
     });
 }
+
+
+
+
     function enviarCompra() {
     
-    $.post("https://jsonplaceholder.typicode.com/posts",JSON.stringify(carrito),function(respuesta,estado) {
+    $.post("https://jsonplaceholder.typicode.com/posts",JSON.stringify(carrito),function(dato,estado) {
         
         
         if(estado == "success"){
@@ -199,16 +189,16 @@ function carritoMusica(musicas) {
     })  
     }
 
-$(document).ready(function () {
-    if("carrito" in localStorage)
-        const datos= JSON.parse(localStorage.getItem('carrito'));
-        for (const objeto of datos) {
-            carrito.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.genero, objeto.cantidad))
-            
-        }
-        carritoMusica(carrito);
-    
-});
+    $(document).ready(function () {
+        if("carrito" in localStorage)
+            // const datos= JSON.parse(localStorage.getItem('carrito'));
+            for (const objeto of datos) {
+                carrito.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.genero, objeto.cantidad))
+                
+            }
+            carritoMusica(carrito);
+        
+    });
 
 $(window).on('load',function () {    
     $("#espera").remove();    
