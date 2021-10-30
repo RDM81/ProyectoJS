@@ -19,15 +19,15 @@ class Vinilo {
     
     precioTotal=()=>{
         let totalReduce = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
-        
+        // document.getElementById('total').innerText = totalReduce
         return totalReduce;
     }
 
 }
 
 const musicas = [];
-const generos = ['Trance', 'Progressive Trance', 'Oldshool', 'Progressive House'];
-const carrito = [];
+const generos = ['Trance', 'Progressive Trance', 'Live Set', 'Progressive House'];
+let carrito = [];
 
 
 $.get("../data/musicas.json", function (respuesta, estado){
@@ -133,7 +133,7 @@ function buscarGenero() {
 function carritoMusica(musicas) {
     $("#carritoCantidad").html(musicas.length);
     $("#carritoProducto").empty();
-
+    
 
     for (const Vinilo of musicas) {
         $("#carritoProducto").append(`<p> ${Vinilo.nombre} 
@@ -142,14 +142,60 @@ function carritoMusica(musicas) {
                                     <span class="badge badge-warning">
                                     Cantidad: ${Vinilo.cantidad}</span>
                                     <span class="badge badge-warning">
-                                    
                                     Subtotal: ${Vinilo.subtotal()}</span>                                
                                     <span class="badge badge-warning">
                                     Total: ${Vinilo.precioTotal()}</span>
-                                    <button id="${Vinilo.id}" class="btn btn-light btn-delete"> x </button>
+                                    <button id="${Vinilo.id}" class="btn btn-dark btn-mas"> + </button>
+                                    <button id="${Vinilo.id}" class="btn btn-dark btn-res"> - </button>
+                                    <button id="${Vinilo.id}" class="btn btn-dark btn-delete"> x </button>
                                     </p>`);
         
     }
+// BOTON DE ELEMINAR
+
+    $('.btn-delete').on('click', eliminarCarrito);
+    function eliminarCarrito(event) {
+        console.log(event.target.id);
+        event.stopPropagation();
+        carrito = carrito.filter(Vinilo => Vinilo.id != event.target.id);
+        carritoMusica(carrito);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+    }
+
+// BOTON SUMAR CANTIDAD
+
+    $('.btn-mas').on('click', agregarCarrito);
+    function agregarCarrito(event) {
+        event.stopPropagation();
+        let Vinilo = carrito.find(Vinilo => Vinilo.id == event.target.id);
+        Vinilo.agregarCantidad(1);
+        $(this).parent().children()[1].innerHTML = Vinilo.cantidad;
+        $(this).parent().children()[2].innerHTML = Vinilo.subtotal();
+        $(this).parent().children()[3].innerHTML = Vinilo.precioTotal();
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+    }
+
+// BOTON RESTA
+
+    $('.btn-res').on('click', restarCarrito);
+    function restarCarrito(event) {
+        event.stopPropagation();
+        let Vinilo = carrito.find(Vinilo => Vinilo.id == event.target.id);
+        if(Vinilo.cantidad > 1){
+            Vinilo.agregarCantidad(-1);
+            $(this).parent().children()[1].innerHTML = Vinilo.cantidad;
+            $(this).parent().children()[2].innerHTML = Vinilo.subtotal();
+            $(this).parent().children()[3].innerHTML = Vinilo.precioTotal();
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+        }
+    }
+
+// MOSTRAR PRECIO TOTAL
+
+// $('#carritoProducto').append(`<span id="total">Total: ${Vinilo.precioTotal()}</span>`);
+
+
+//BOTON CONFIRMAR COMPRA
 
     $('#carritoProducto').append(`<button id="btnConfirmar">Confirmar Compra</button>`);
     $("#btnConfirmar").on("click",enviarCompra,function () {
@@ -190,16 +236,16 @@ function carritoMusica(musicas) {
     })  
     }
 
-    $(document).ready(function () {
-        if("carrito" in localStorage)
-            // const datos= JSON.parse(localStorage.getItem('carrito'));
-            for (const objeto of datos) {
-                carrito.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.genero, objeto.cantidad))
+    // $(document).ready(function () {
+    //     if("carrito" in localStorage)
+    //         // const datos= JSON.parse(localStorage.getItem('carrito'));
+    //         for (const objeto of datos) {
+    //             carrito.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.genero, objeto.cantidad))
                 
-            }
-            carritoMusica(carrito);
+    //         }
+    //         carritoMusica(carrito);
         
-    });
+    // });
 
 $(window).on('load',function () {    
     $("#espera").remove();    
