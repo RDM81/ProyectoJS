@@ -19,7 +19,7 @@ class Vinilo {
     
     precioTotal=()=>{
         let totalReduce = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
-        // document.getElementById('total').innerText = totalReduce
+        // document.getElementById('total').innerText = totalReduce;
         return totalReduce;
     }
 
@@ -135,22 +135,57 @@ function carritoMusica(musicas) {
     $("#carritoProducto").empty();
     
 
+    // for (const Vinilo of musicas) {
+    //     $("#carritoProducto").append(`<table class="table table-bordered">
+    //                                         <thead>
+    //                                         <tr>
+    //                                             <th scope="col">#</th>
+    //                                             <th scope="col">Nombre</th>
+    //                                             <th scope="col">Precio</th>
+    //                                             <th scope="col">Cantidad</th>
+    //                                             <th scope="col">Eliminar</th>
+    //                                             <th scope="col">SubTotal</th>
+    //                                         </tr>
+    //                                         </thead>
+    //                                         <tbody>
+    //                                         <tr>
+    //                                             <th scope="row">1</th>
+    //                                             <td>${Vinilo.nombre}</td>
+    //                                             <td>$ ${Vinilo.precio}</td>
+    //                                             <td>${Vinilo.cantidad} <button id="${Vinilo.id}" class="btn-dark btn-mas"> + </button>
+    //                                             <button id="${Vinilo.id}" class="btn-dark btn-res"> - </button></td>
+    //                                             <td><button id="${Vinilo.id}" class="btn-dark btn-delete"> x </button></td>
+    //                                             <td><span class="badge badge-warning">
+    //                                             Subtotal: ${Vinilo.subtotal()}</span></td>
+    //                                         </tr>
+    //                                         <p id="total">Precio Total $ ${Vinilo.precioTotal()}</p>
+    //                                         </tbody>
+                                            
+    //                                     </table>`);
+                                            
+    // }
+
     for (const Vinilo of musicas) {
         $("#carritoProducto").append(`<p> ${Vinilo.nombre} 
                                     <span class="badge badge-warning">
                                     $ ${Vinilo.precio}</span>
                                     <span class="badge badge-warning">
                                     Cantidad: ${Vinilo.cantidad}</span>
-                                    <span class="badge badge-warning">
-                                    Subtotal: ${Vinilo.subtotal()}</span>                                
-                                    <span class="badge badge-warning">
-                                    Total: ${Vinilo.precioTotal()}</span>
+                                    
                                     <button id="${Vinilo.id}" class="btn btn-dark btn-mas"> + </button>
                                     <button id="${Vinilo.id}" class="btn btn-dark btn-res"> - </button>
                                     <button id="${Vinilo.id}" class="btn btn-dark btn-delete"> x </button>
-                                    </p>`);
+                                    </p>
+                                    <div id="subtotal">${Vinilo.subtotal()}</div>
+                                    <div id="total">${Vinilo.precioTotal()}</div>`);
         
     }
+
+                                    // <span class="badge badge-warning">
+                                    // Subtotal: ${Vinilo.subtotal()}</span>                                
+                                    // <span class="badge badge-warning">
+                                    // Total: ${Vinilo.precioTotal()}</span>
+
 // BOTON DE ELEMINAR
 
     $('.btn-delete').on('click', eliminarCarrito);
@@ -236,16 +271,16 @@ function carritoMusica(musicas) {
     })  
     }
 
-    // $(document).ready(function () {
-    //     if("carrito" in localStorage)
-    //         // const datos= JSON.parse(localStorage.getItem('carrito'));
-    //         for (const objeto of datos) {
-    //             carrito.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.genero, objeto.cantidad))
+    $(document).ready(function () {
+        if("carrito" in localStorage){
+            const datos= JSON.parse(localStorage.getItem('carrito'));
+            for (const objeto of datos) {
+                carrito.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.genero, objeto.cantidad))
                 
-    //         }
-    //         carritoMusica(carrito);
-        
-    // });
+            }
+            carritoMusica(carrito);
+        }
+    });
 
 $(window).on('load',function () {    
     $("#espera").remove();    

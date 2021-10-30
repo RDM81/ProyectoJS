@@ -67,17 +67,21 @@
 <br>
 
 
-<div class="dropdown" id="carrito" align=center>
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="botonCarrito" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Carrito de Compras <span id="carritoCantidad" class="badge badge-light">0</span>
-    </button>
-    <div id="carritoProducto" class="dropdown-menu" aria-labelledby="dropdownMenuButton"> 
-    
-        
+ <div align=center>
+        <!-- Large modal -->
+    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-lg" id="botonCarrito">
+        Carrito de Compras<span id="carritoCantidad" class="badge badge-light">0</span></button>
+
+        <div class="modal fade bd-example-modal-lg" id="carrito" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" id="carritoProducto">
+                    <div id="subtotal"></div>
+                    <div id="total"></div>
+                
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
-
 
 <br>
 <select id="seleccionGenero" class="form-select" aria-label="Default select example">
