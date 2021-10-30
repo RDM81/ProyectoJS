@@ -19,8 +19,8 @@ class Vinilo {
     
     precioTotal=()=>{
         let totalReduce = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
-        document.getElementById('total').innerText = totalReduce;
-        // return totalReduce;
+        // document.getElementById('total').innerText = totalReduce;
+        return totalReduce;
     }
 
 }
@@ -135,51 +135,55 @@ function carritoMusica(musicas) {
     $("#carritoProducto").empty();
     
 
-    // for (const Vinilo of musicas) {
-    //     $("#carritoProducto").append(`<table class="table table-bordered">
-    //                                         <thead>
-    //                                         <tr>
-    //                                             <th scope="col">#</th>
-    //                                             <th scope="col">Nombre</th>
-    //                                             <th scope="col">Precio</th>
-    //                                             <th scope="col">Cantidad</th>
-    //                                             <th scope="col">Eliminar</th>
-    //                                             <th scope="col">SubTotal</th>
-    //                                         </tr>
-    //                                         </thead>
-    //                                         <tbody>
-    //                                         <tr>
-    //                                             <th scope="row">1</th>
-    //                                             <td>${Vinilo.nombre}</td>
-    //                                             <td>$ ${Vinilo.precio}</td>
-    //                                             <td>${Vinilo.cantidad} <button id="${Vinilo.id}" class="btn-dark btn-mas"> + </button>
-    //                                             <button id="${Vinilo.id}" class="btn-dark btn-res"> - </button></td>
-    //                                             <td><button id="${Vinilo.id}" class="btn-dark btn-delete"> x </button></td>
-    //                                             <td><span class="badge badge-warning">
-    //                                             Subtotal: ${Vinilo.subtotal()}</span></td>
-    //                                         </tr>
-    //                                         <p id="total">Precio Total $ ${Vinilo.precioTotal()}</p>
-    //                                         </tbody>
-                                            
-    //                                     </table>`);
-                                            
-    // }
-
     for (const Vinilo of musicas) {
-        $("#carritoProducto").append(`<p> ${Vinilo.nombre} 
-                                    <span class="badge badge-warning">
-                                    $ ${Vinilo.precio}</span>
-                                    <span class="badge badge-warning">
-                                    Cantidad: ${Vinilo.cantidad}</span>
-                                    
-                                    <button id="${Vinilo.id}" class="btn btn-dark btn-mas"> + </button>
-                                    <button id="${Vinilo.id}" class="btn btn-dark btn-res"> - </button>
-                                    <button id="${Vinilo.id}" class="btn btn-dark btn-delete"> x </button>
-                                    </p>
-                                    <div id="subtotal"> $ ${Vinilo.subtotal()}</div>
-                                    <div id="total"> $ ${Vinilo.precioTotal()}</div>`);
-        
+        $("#carritoProducto").append(`<table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Precio</th>
+                                                <th scope="col">Cantidad</th>
+                                                <th scope="col">Eliminar</th>
+                                                <th scope="col">SubTotal</th>
+                                                <th scope="col">Total</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>${Vinilo.nombre}</td>
+                                                <td>$ ${Vinilo.precio}</td>
+                                                <td>${Vinilo.cantidad} <button id="${Vinilo.id}" class="btn-dark btn-mas"> + </button>
+                                                <button id="${Vinilo.id}" class="btn-dark btn-res"> - </button></td>
+                                                <td><button id="${Vinilo.id}" class="btn-dark btn-delete"> x </button></td>
+                                                <td><span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span></td>
+                                                <td><span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span></td>
+                                                
+                                            </tr>
+                                            
+                                            </tbody>
+                                            
+                                        </table>
+                                            <div id="subtotal"> El SubTotal es de $ ${Vinilo.subtotal()}</div>
+                                            <div id="total"> El Total es de $ ${Vinilo.precioTotal()}</div>`);
+                                            
     }
+
+    // for (const Vinilo of musicas) {
+    //     $("#carritoProducto").append(`<p> ${Vinilo.nombre} 
+    //                                 <span class="badge badge-warning">
+    //                                 $ ${Vinilo.precio}</span>
+    //                                 <span class="badge badge-warning">
+    //                                 Cantidad: ${Vinilo.cantidad}</span>
+                                    
+    //                                 <button id="${Vinilo.id}" class="btn btn-dark btn-mas"> + </button>
+    //                                 <button id="${Vinilo.id}" class="btn btn-dark btn-res"> - </button>
+    //                                 <button id="${Vinilo.id}" class="btn btn-dark btn-delete"> x </button>
+    //                                 </p>
+    //                                 <div id="subtotal"> El SubTotal es de $ ${Vinilo.subtotal()}</div>
+    //                                 <div id="total"> El Total es de $ ${Vinilo.precioTotal()}</div>`);
+        
+    // }
 
                                     // <span class="badge badge-warning">
                                     // Subtotal: ${Vinilo.subtotal()}</span>                                
