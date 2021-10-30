@@ -19,8 +19,8 @@ class Vinilo {
     
     precioTotal=()=>{
         let totalReduce = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
-        // document.getElementById('total').innerText = totalReduce;
-        return totalReduce;
+        document.getElementById('total').innerText = totalReduce;
+        // return totalReduce;
     }
 
 }
