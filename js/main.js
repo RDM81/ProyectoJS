@@ -163,7 +163,7 @@ function carritoMusica(musicas) {
                                             
                                         </table>
                                             
-                                            <div id="total"> <span class="badge badge-warning">total: ${Vinilo.precioTotal()}</span></div>`);
+                                            <div id='total'>total: ${Vinilo.precioTotal()}</div>`);
                                             
     }
 
@@ -186,7 +186,14 @@ function carritoMusica(musicas) {
         
     // }
 
-                                    
+    
+// // MOSTRAR PRECIO TOTAL
+
+// $('#carritoProducto').append(`<div id="total">TOTAL</div>`);
+//     precioTotal=()=>{
+//     let totalReduce = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
+//     document.getElementById('total').innerText = totalReduce;
+//     };
 
 // BOTON DE ELEMINAR
 
@@ -208,9 +215,9 @@ function carritoMusica(musicas) {
         Vinilo.agregarCantidad(1);
         $(this).parent().children()[0].innerHTML = Vinilo.cantidad;
         $(this).parent().children()[4].innerHTML = Vinilo.subtotal();
-        $(this).parent().children()[5].innerHTML = Vinilo.precioTotal();
+        $('#carritoProducto').append(`<div id="total">TOTAL</div>`).innerHTML = Vinilo.precioTotal();
         localStorage.setItem('carrito', JSON.stringify(carrito));
-        $('#carritoProducto').append(`<div id="total">TOTAL</div>`);
+        
     }
 
 // BOTON RESTA
@@ -223,18 +230,12 @@ function carritoMusica(musicas) {
             Vinilo.agregarCantidad(-1);
             $(this).parent().children()[0].innerHTML = Vinilo.cantidad;
             $(this).parent().children()[4].innerHTML = Vinilo.subtotal();
-            $(this).parent().children()[5].innerHTML = Vinilo.precioTotal();
+            $('#carritoProducto').append(`<div id="total">TOTAL</div>`).innerHTML = Vinilo.precioTotal();
             localStorage.setItem('carrito', JSON.stringify(carrito));
         }
     }
 
-// MOSTRAR PRECIO TOTAL
 
-$('#carritoProducto').append(`<div id="total">TOTAL</div>`);
-    precioTotal=()=>{
-    let totalReduce = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
-    document.getElementById('total').innerText = totalReduce;
-    };
 
 
 //BOTON CONFIRMAR COMPRA
