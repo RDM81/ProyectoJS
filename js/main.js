@@ -147,7 +147,7 @@ function carritoMusica(musicas) {
         tr.innerHTML+=
                         `
                         <td>${Vinilo.id}</td>
-                        <td>$ ${Vinilo.nombre}</td>
+                        <td>${Vinilo.nombre}</td>
                         <td><span class="badge badge-warning" id="counter${Vinilo.id}">${Vinilo.cantidad}</span>
                         <button id="${Vinilo.id}" class="btn-dark btn-mas btn-mas${Vinilo.id}"> + </button>
                         <button id="${Vinilo.id}" class="btn-dark btn-res btn-res${Vinilo.id}"> - </button>
