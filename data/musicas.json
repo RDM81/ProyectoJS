@@ -1,9 +1,9 @@
-[{"id":1,"nombre":"Kosheen vs Lange vs Andy Moor - Stadium Catch Four (RDM & Dp Mashup)", "img":"../assets/Imagenes/Fotos/vinilo.jpg", "precio": 250, "genero":"Progressive House", "cantidad":1 } ,
-{"id": 2,"nombre": "Wippenberg vs Mark Vision - Chakarita Gate (RDM & Dp Mashup)", "img":"../assets/Imagenes/Fotos/vinilo.jpg", "precio": 350, "genero":"Trance", "cantidad":1  },
-{ "id": 3,"nombre": "Roc Project vs. Reflekt - Never Need To Feel Loved (RDM Mashup)", "img":"../assets/Imagenes/Fotos/vinilo.jpg", "precio": 350, "genero":"Progressive House", "cantidad":1  },
-{ "id": 4,"nombre": "Darude vs Cirez D - On Sandstorm (RDM Mashup)", "img":"../assets/Imagenes/Fotos/vinilo.jpg", "precio": 200, "genero":"Progressive Trance", "cantidad":1  },
-{ "id": 5,"nombre": "issen vs Albert Vorme - Washout Falling What (RDM Mashup)", "img":"../assets/Imagenes/Fotos/vinilo.jpg", "precio": 150, "genero":"Progressive Trance", "cantidad":1  },
-{ "id": 6,"nombre": "Tiesto vs. Andy Moor - Lethal Stadium Four (RDM Mashup)", "img":"../assets/Imagenes/Fotos/vinilo.jpg", "precio": 450, "genero":"Trance", "cantidad":1  },
-{ "id": 7,"nombre": "Roberto Di Maggio @ SH Party 2021", "img":"../assets/Imagenes/Fotos/vinilo.jpg", "precio": 100, "genero":"Live Set", "cantidad":1  },
-{ "id": 8,"nombre": "Roberto Di Maggio @ MBP Abril 2021", "img":"../assets/Imagenes/Fotos/vinilo.jpg", "precio": 100, "genero":"Live Set", "cantidad":1  },
-{ "id": 9,"nombre": "Roberto Di Maggio @ Oldschool 2021", "img":"../assets/Imagenes/Fotos/vinilo.jpg", "precio": 500, "genero":"Live Set", "cantidad":1  }]
+[{"id":1,"nombre":"Kosheen vs Lange vs Andy Moor - Stadium Catch Four (RDM & Dp Mashup)", "img":"../assets/Imagenes/Fotos/vinilo3.jpg", "precio": 250, "genero":"Progressive House", "cantidad":1 } ,
+{"id": 2,"nombre": "Wippenberg vs Mark Vision - Chakarita Gate (RDM & Dp Mashup)", "img":"../assets/Imagenes/Fotos/vinilo3.jpg", "precio": 350, "genero":"Trance", "cantidad":1  },
+{ "id": 3,"nombre": "Roc Project vs. Reflekt - Never Need To Feel Loved (RDM Mashup)", "img":"../assets/Imagenes/Fotos/vinilo3.jpg", "precio": 350, "genero":"Progressive House", "cantidad":1  },
+{ "id": 4,"nombre": "Darude vs Cirez D - On Sandstorm (RDM Mashup)", "img":"../assets/Imagenes/Fotos/vinilo3.jpg", "precio": 200, "genero":"Progressive Trance", "cantidad":1  },
+{ "id": 5,"nombre": "Bissen vs Albert Vorme - Washout Falling What (RDM Mashup)", "img":"../assets/Imagenes/Fotos/vinilo3.jpg", "precio": 150, "genero":"Progressive Trance", "cantidad":1  },
+{ "id": 6,"nombre": "Tiesto vs. Andy Moor - Lethal Stadium Four (RDM Mashup)", "img":"../assets/Imagenes/Fotos/vinilo3.jpg", "precio": 450, "genero":"Trance", "cantidad":1  },
+{ "id": 7,"nombre": "Roberto Di Maggio @ SH Party 2021", "img":"../assets/Imagenes/Fotos/vinilo3.jpg", "precio": 100, "genero":"Live Set", "cantidad":1  },
+{ "id": 8,"nombre": "Roberto Di Maggio @ MBP Abril 2021", "img":"../assets/Imagenes/Fotos/vinilo3.jpg", "precio": 100, "genero":"Live Set", "cantidad":1  },
+{ "id": 9,"nombre": "Roberto Di Maggio @ Oldschool 2021", "img":"../assets/Imagenes/Fotos/vinilo3.jpg", "precio": 500, "genero":"Live Set", "cantidad":1  }]
