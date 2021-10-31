@@ -155,14 +155,14 @@ function carritoMusica(musicas) {
                                                 <button id="${Vinilo.id}" class="btn-dark btn-res"> - </button>
                                                 <button id="${Vinilo.id}" class="btn-dark btn-delete"> x </button>
                                                 <span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span>
-                                                <span class="badge badge-warning">total: ${Vinilo.precioTotal()}</span></td>
+                                                </td>
                                                 
                                             </tr>
                                             
                                             </tbody>
                                             
                                         </table>
-                                            <div id="subtotal"> <span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span></div>
+                                            
                                             <div id="total"> <span class="badge badge-warning">total: ${Vinilo.precioTotal()}</span></div>`);
                                             
     }
@@ -210,6 +210,7 @@ function carritoMusica(musicas) {
         $(this).parent().children()[4].innerHTML = Vinilo.subtotal();
         $(this).parent().children()[5].innerHTML = Vinilo.precioTotal();
         localStorage.setItem('carrito', JSON.stringify(carrito));
+        $('#carritoProducto').append(`<div id="total">TOTAL</div>`);
     }
 
 // BOTON RESTA
@@ -229,7 +230,11 @@ function carritoMusica(musicas) {
 
 // MOSTRAR PRECIO TOTAL
 
-// $('#carritoProducto').append(`<span id="total">Total: ${Vinilo.precioTotal()}</span>`);
+$('#carritoProducto').append(`<div id="total">TOTAL</div>`);
+    precioTotal=()=>{
+    let totalReduce = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
+    document.getElementById('total').innerText = totalReduce;
+    };
 
 
 //BOTON CONFIRMAR COMPRA
