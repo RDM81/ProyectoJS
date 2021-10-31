@@ -17,11 +17,11 @@ class Vinilo {
         return this.cantidad * this.precio;
     }
     
-    precioTotal=()=>{
-        let totalReduce = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
-        // document.getElementById('total').innerText = totalReduce;
-        return totalReduce;
-    }
+    // precioTotal=()=>{
+    //     let totalReduce = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
+    //     // document.getElementById('total').innerText = totalReduce;
+    //     return totalReduce;
+    // }
 
 }
 
@@ -67,8 +67,13 @@ for (const Vinilo of musicas) {
                     </div>
                     </div>
                 </div>`);
+
+
+            
 }
 $(".btnBUY").click(comprarVinilo);
+
+
 }
 
 function comprarVinilo(event) {
@@ -80,9 +85,11 @@ function comprarVinilo(event) {
             
             const encontrado = musicas.find(Vinilo => Vinilo.id == idVinilo);
             
-            carrito.push(encontrado);    
+            carrito.push(encontrado);  
+            actualizarPrecio()  
         }else{
             existe.agregarCantidad(1);
+            actualizarPrecio()
         }
         localStorage.setItem('carrito', JSON.stringify(carrito));
         carritoMusica(carrito);
@@ -132,68 +139,26 @@ function buscarGenero() {
 
 function carritoMusica(musicas) {
     $("#carritoCantidad").html(musicas.length);
-    $("#carritoProducto").empty();
+    // $("#carritoProducto").empty();
     
-
+    document.getElementById('containerProductos').innerHTML="";
     for (const Vinilo of musicas) {
-        $("#carritoProducto").append(`<table class="table table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">Precio</th>
-                                                <th scope="col">Cantidad</th>
-                                                
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>${Vinilo.nombre}</td>
-                                                <td>$ ${Vinilo.precio}</td>
-                                                <td><span class="badge badge-warning">${Vinilo.cantidad}</span><button id="${Vinilo.id}" class="btn-dark btn-mas"> + </button>
-                                                <button id="${Vinilo.id}" class="btn-dark btn-res"> - </button>
-                                                <button id="${Vinilo.id}" class="btn-dark btn-delete"> x </button>
-                                                <span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span>
-                                                </td>
-                                                
-                                            </tr>
-                                            
-                                            </tbody>
-                                            
-                                        </table>
-                                            
-                                            <div id='total'>total: ${Vinilo.precioTotal()}</div>`);
-                                            
+        let tr = document.createElement('tr')
+        tr.innerHTML+=
+                        `
+                        <td>${Vinilo.id}</td>
+                        <td>$ ${Vinilo.nombre}</td>
+                        <td><button id="${Vinilo.id}" class="btn-dark btn-mas btn-mas${Vinilo.id}"> + </button>
+                        <button id="${Vinilo.id}" class="btn-dark btn-res btn-res${Vinilo.id}"> - </button>
+                        <button id="${Vinilo.id}" class="btn-dark btn-delete btn-delete${Vinilo.id}"> x </button></td>
+                        <td><span class="badge badge-warning" id="counter${Vinilo.id}">${Vinilo.cantidad}</span></td>
+                        <td><span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span></td>
+                        `
+            document.getElementById('containerProductos').appendChild(tr)
+
     }
 
-    // for (const Vinilo of musicas) {
-    //     $("#carritoProducto").append(`<p> ${Vinilo.nombre} 
-    //                                 <span class="badge badge-warning">
-    //                                 $ ${Vinilo.precio}</span>
-    //                                 <span class="badge badge-warning">
-    //                                 Cantidad: ${Vinilo.cantidad}</span>
-    //                                 <span class="badge badge-warning">
-    //                                 Subtotal: ${Vinilo.subtotal()}</span>                                
-    //                                 <span class="badge badge-warning">
-    //                                 Total: ${Vinilo.precioTotal()}</span>
-    //                                 <button id="${Vinilo.id}" class="btn btn-dark btn-mas"> + </button>
-    //                                 <button id="${Vinilo.id}" class="btn btn-dark btn-res"> - </button>
-    //                                 <button id="${Vinilo.id}" class="btn btn-dark btn-delete"> x </button>
-    //                                 </p>
-    //                                 <div id="subtotal"> El SubTotal es de $ ${Vinilo.subtotal()}</div>
-    //                                 <div id="total"> El Total es de $ ${Vinilo.precioTotal()}</div>`);
-        
-    // }
-
     
-// // MOSTRAR PRECIO TOTAL
-
-// $('#carritoProducto').append(`<div id="total">TOTAL</div>`);
-//     precioTotal=()=>{
-//     let totalReduce = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
-//     document.getElementById('total').innerText = totalReduce;
-//     };
 
 // BOTON DE ELEMINAR
 
@@ -204,6 +169,7 @@ function carritoMusica(musicas) {
         carrito = carrito.filter(Vinilo => Vinilo.id != event.target.id);
         carritoMusica(carrito);
         localStorage.setItem('carrito', JSON.stringify(carrito));
+        actualizarPrecio()
     }
 
 // BOTON SUMAR CANTIDAD
@@ -213,12 +179,13 @@ function carritoMusica(musicas) {
         event.stopPropagation();
         let Vinilo = carrito.find(Vinilo => Vinilo.id == event.target.id);
         Vinilo.agregarCantidad(1);
-        $(this).parent().children()[0].innerHTML = Vinilo.cantidad;
-        $(this).parent().children()[4].innerHTML = Vinilo.subtotal();
-        $('#carritoProducto').append(`<div id="total">TOTAL</div>`).innerHTML = Vinilo.precioTotal();
+        // $(this).parent().children()[2].innerHTML = Vinilo.cantidad;
+        // $(this).parent().children()[4].innerHTML = Vinilo.subtotal();
         localStorage.setItem('carrito', JSON.stringify(carrito));
+        actualizarPrecio()
         
     }
+    
 
 // BOTON RESTA
 
@@ -228,10 +195,11 @@ function carritoMusica(musicas) {
         let Vinilo = carrito.find(Vinilo => Vinilo.id == event.target.id);
         if(Vinilo.cantidad > 1){
             Vinilo.agregarCantidad(-1);
-            $(this).parent().children()[0].innerHTML = Vinilo.cantidad;
-            $(this).parent().children()[4].innerHTML = Vinilo.subtotal();
-            $('#carritoProducto').append(`<div id="total">TOTAL</div>`).innerHTML = Vinilo.precioTotal();
+            // $(this).parent().children()[3].innerHTML = Vinilo.cantidad;
+            // $(this).parent().children()[4].innerHTML = Vinilo.subtotal();
             localStorage.setItem('carrito', JSON.stringify(carrito));
+            actualizarPrecio()
+
         }
     }
 
@@ -240,7 +208,7 @@ function carritoMusica(musicas) {
 
 //BOTON CONFIRMAR COMPRA
 
-    $('#carritoProducto').append(`<button id="btnConfirmar">Confirmar Compra</button>`);
+
     $("#btnConfirmar").on("click",enviarCompra,function () {
         
         Toastify({
@@ -294,4 +262,11 @@ $(window).on('load',function () {
     $("#espera").remove();    
 });
 
+precioFinal.innerText = "0"
+
+
+function actualizarPrecio() {
+    let precioFinal = document.getElementById('precioFinal');
+    precioFinal.innerText = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
+}
 

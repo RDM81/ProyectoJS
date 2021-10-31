@@ -75,8 +75,24 @@
         <div class="modal fade bd-example-modal-lg" id="carrito" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content" id="carritoProducto">
-                    
-                
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Botones</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Sub-total</th>
+                            
+                        </tr>
+                        </thead>
+                        <tbody id="containerProductos">
+
+                        </tbody>
+                    </table>
+                        
+                        <div id='total'>total: $<span id="precioFinal"></span></div>
+                        <button id="btnConfirmar">Confirmar Compra</button>
                 </div>
             </div>
         </div>
