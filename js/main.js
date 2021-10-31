@@ -155,7 +155,7 @@ function carritoMusica(musicas) {
                                                 <button id="${Vinilo.id}" class="btn-dark btn-res"> - </button>
                                                 <button id="${Vinilo.id}" class="btn-dark btn-delete"> x </button>
                                                 <span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span>
-                                                <span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span></td>
+                                                <span class="badge badge-warning">total: ${Vinilo.precioTotal()}</span></td>
                                                 
                                             </tr>
                                             
