@@ -143,9 +143,7 @@ function carritoMusica(musicas) {
                                                 <th scope="col">Nombre</th>
                                                 <th scope="col">Precio</th>
                                                 <th scope="col">Cantidad</th>
-                                                <th scope="col">Eliminar</th>
-                                                <th scope="col">SubTotal</th>
-                                                <th scope="col">Total</th>
+                                                
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -154,10 +152,10 @@ function carritoMusica(musicas) {
                                                 <td>${Vinilo.nombre}</td>
                                                 <td>$ ${Vinilo.precio}</td>
                                                 <td>${Vinilo.cantidad} <button id="${Vinilo.id}" class="btn-dark btn-mas"> + </button>
-                                                <button id="${Vinilo.id}" class="btn-dark btn-res"> - </button></td>
-                                                <td><button id="${Vinilo.id}" class="btn-dark btn-delete"> x </button></td>
-                                                <td><span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span></td>
-                                                <td><span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span></td>
+                                                <button id="${Vinilo.id}" class="btn-dark btn-res"> - </button>
+                                                <button id="${Vinilo.id}" class="btn-dark btn-delete"> x </button>
+                                                <span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span>
+                                                <span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span></td>
                                                 
                                             </tr>
                                             
@@ -175,7 +173,10 @@ function carritoMusica(musicas) {
     //                                 $ ${Vinilo.precio}</span>
     //                                 <span class="badge badge-warning">
     //                                 Cantidad: ${Vinilo.cantidad}</span>
-                                    
+    //                                 <span class="badge badge-warning">
+    //                                 Subtotal: ${Vinilo.subtotal()}</span>                                
+    //                                 <span class="badge badge-warning">
+    //                                 Total: ${Vinilo.precioTotal()}</span>
     //                                 <button id="${Vinilo.id}" class="btn btn-dark btn-mas"> + </button>
     //                                 <button id="${Vinilo.id}" class="btn btn-dark btn-res"> - </button>
     //                                 <button id="${Vinilo.id}" class="btn btn-dark btn-delete"> x </button>
@@ -185,10 +186,7 @@ function carritoMusica(musicas) {
         
     // }
 
-                                    // <span class="badge badge-warning">
-                                    // Subtotal: ${Vinilo.subtotal()}</span>                                
-                                    // <span class="badge badge-warning">
-                                    // Total: ${Vinilo.precioTotal()}</span>
+                                    
 
 // BOTON DE ELEMINAR
 
@@ -209,8 +207,8 @@ function carritoMusica(musicas) {
         let Vinilo = carrito.find(Vinilo => Vinilo.id == event.target.id);
         Vinilo.agregarCantidad(1);
         $(this).parent().children()[1].innerHTML = Vinilo.cantidad;
-        $(this).parent().children()[2].innerHTML = Vinilo.subtotal();
-        $(this).parent().children()[3].innerHTML = Vinilo.precioTotal();
+        $(this).parent().children()[3].innerHTML = Vinilo.subtotal();
+        $(this).parent().children()[4].innerHTML = Vinilo.precioTotal();
         localStorage.setItem('carrito', JSON.stringify(carrito));
     }
 
@@ -223,8 +221,8 @@ function carritoMusica(musicas) {
         if(Vinilo.cantidad > 1){
             Vinilo.agregarCantidad(-1);
             $(this).parent().children()[1].innerHTML = Vinilo.cantidad;
-            $(this).parent().children()[2].innerHTML = Vinilo.subtotal();
-            $(this).parent().children()[3].innerHTML = Vinilo.precioTotal();
+            $(this).parent().children()[3].innerHTML = Vinilo.subtotal();
+            $(this).parent().children()[4].innerHTML = Vinilo.precioTotal();
             localStorage.setItem('carrito', JSON.stringify(carrito));
         }
     }
