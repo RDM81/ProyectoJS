@@ -142,6 +142,7 @@ function carritoMusica(musicas) {
     // $("#carritoProducto").empty();
     
     document.getElementById('containerProductos').innerHTML="";
+    
     for (const Vinilo of musicas) {
         let tr = document.createElement('tr')
         tr.innerHTML+=
@@ -169,8 +170,9 @@ function carritoMusica(musicas) {
         event.stopPropagation();
         carrito = carrito.filter(Vinilo => Vinilo.id != event.target.id);
         carritoMusica(carrito);
-        localStorage.setItem('carrito', JSON.stringify(carrito));
+        
         actualizarPrecio()
+        localStorage.setItem('carrito', JSON.stringify(carrito));
     }
 
 // BOTON SUMAR CANTIDAD
@@ -182,9 +184,8 @@ function carritoMusica(musicas) {
         Vinilo.agregarCantidad(1);
         $(this).parent().children()[0].innerHTML = Vinilo.cantidad;
         $(this).parent().children()[4].innerHTML = Vinilo.subtotal();
-        localStorage.setItem('carrito', JSON.stringify(carrito));
         actualizarPrecio()
-        
+        localStorage.setItem('carrito', JSON.stringify(carrito));
     }
     
 
@@ -252,6 +253,7 @@ function carritoMusica(musicas) {
     $(document).ready(function () {
         if("carrito" in localStorage){
             const datos= JSON.parse(localStorage.getItem('carrito'));
+            localStorage.setItem('carrito', JSON.stringify(carrito));
             for (const objeto of datos) {
                 carrito.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.genero, objeto.cantidad))
                 
