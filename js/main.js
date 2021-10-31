@@ -151,7 +151,7 @@ function carritoMusica(musicas) {
                                                 <th scope="row">1</th>
                                                 <td>${Vinilo.nombre}</td>
                                                 <td>$ ${Vinilo.precio}</td>
-                                                <td>${Vinilo.cantidad} <button id="${Vinilo.id}" class="btn-dark btn-mas"> + </button>
+                                                <td><span class="badge badge-warning">${Vinilo.cantidad}</span><button id="${Vinilo.id}" class="btn-dark btn-mas"> + </button>
                                                 <button id="${Vinilo.id}" class="btn-dark btn-res"> - </button>
                                                 <button id="${Vinilo.id}" class="btn-dark btn-delete"> x </button>
                                                 <span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span>
@@ -162,8 +162,8 @@ function carritoMusica(musicas) {
                                             </tbody>
                                             
                                         </table>
-                                            <div id="subtotal"> El SubTotal es de $ ${Vinilo.subtotal()}</div>
-                                            <div id="total"> El Total es de $ ${Vinilo.precioTotal()}</div>`);
+                                            <div id="subtotal"> <span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span></div>
+                                            <div id="total"> <span class="badge badge-warning">total: ${Vinilo.precioTotal()}</span></div>`);
                                             
     }
 
@@ -206,9 +206,9 @@ function carritoMusica(musicas) {
         event.stopPropagation();
         let Vinilo = carrito.find(Vinilo => Vinilo.id == event.target.id);
         Vinilo.agregarCantidad(1);
-        $(this).parent().children()[1].innerHTML = Vinilo.cantidad;
-        $(this).parent().children()[3].innerHTML = Vinilo.subtotal();
-        $(this).parent().children()[4].innerHTML = Vinilo.precioTotal();
+        $(this).parent().children()[0].innerHTML = Vinilo.cantidad;
+        $(this).parent().children()[4].innerHTML = Vinilo.subtotal();
+        $(this).parent().children()[5].innerHTML = Vinilo.precioTotal();
         localStorage.setItem('carrito', JSON.stringify(carrito));
     }
 
@@ -220,9 +220,9 @@ function carritoMusica(musicas) {
         let Vinilo = carrito.find(Vinilo => Vinilo.id == event.target.id);
         if(Vinilo.cantidad > 1){
             Vinilo.agregarCantidad(-1);
-            $(this).parent().children()[1].innerHTML = Vinilo.cantidad;
-            $(this).parent().children()[3].innerHTML = Vinilo.subtotal();
-            $(this).parent().children()[4].innerHTML = Vinilo.precioTotal();
+            $(this).parent().children()[0].innerHTML = Vinilo.cantidad;
+            $(this).parent().children()[4].innerHTML = Vinilo.subtotal();
+            $(this).parent().children()[5].innerHTML = Vinilo.precioTotal();
             localStorage.setItem('carrito', JSON.stringify(carrito));
         }
     }
