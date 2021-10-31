@@ -148,11 +148,12 @@ function carritoMusica(musicas) {
                         `
                         <td>${Vinilo.id}</td>
                         <td>$ ${Vinilo.nombre}</td>
-                        <td><button id="${Vinilo.id}" class="btn-dark btn-mas btn-mas${Vinilo.id}"> + </button>
+                        <td><span class="badge badge-warning" id="counter${Vinilo.id}">${Vinilo.cantidad}</span>
+                        <button id="${Vinilo.id}" class="btn-dark btn-mas btn-mas${Vinilo.id}"> + </button>
                         <button id="${Vinilo.id}" class="btn-dark btn-res btn-res${Vinilo.id}"> - </button>
-                        <button id="${Vinilo.id}" class="btn-dark btn-delete btn-delete${Vinilo.id}"> x </button></td>
-                        <td><span class="badge badge-warning" id="counter${Vinilo.id}">${Vinilo.cantidad}</span></td>
-                        <td><span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span></td>
+                        <button id="${Vinilo.id}" class="btn-dark btn-delete btn-delete${Vinilo.id}"> x </button>
+                        <span class="badge badge-warning">Subtotal: ${Vinilo.subtotal()}</span></td>
+                        
                         `
             document.getElementById('containerProductos').appendChild(tr)
 
@@ -179,8 +180,8 @@ function carritoMusica(musicas) {
         event.stopPropagation();
         let Vinilo = carrito.find(Vinilo => Vinilo.id == event.target.id);
         Vinilo.agregarCantidad(1);
-        // $(this).parent().children()[2].innerHTML = Vinilo.cantidad;
-        // $(this).parent().children()[4].innerHTML = Vinilo.subtotal();
+        $(this).parent().children()[0].innerHTML = Vinilo.cantidad;
+        $(this).parent().children()[4].innerHTML = Vinilo.subtotal();
         localStorage.setItem('carrito', JSON.stringify(carrito));
         actualizarPrecio()
         
@@ -195,8 +196,8 @@ function carritoMusica(musicas) {
         let Vinilo = carrito.find(Vinilo => Vinilo.id == event.target.id);
         if(Vinilo.cantidad > 1){
             Vinilo.agregarCantidad(-1);
-            // $(this).parent().children()[3].innerHTML = Vinilo.cantidad;
-            // $(this).parent().children()[4].innerHTML = Vinilo.subtotal();
+            $(this).parent().children()[0].innerHTML = Vinilo.cantidad;
+            $(this).parent().children()[4].innerHTML = Vinilo.subtotal();
             localStorage.setItem('carrito', JSON.stringify(carrito));
             actualizarPrecio()
 
