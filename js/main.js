@@ -17,11 +17,7 @@ class Vinilo {
         return this.cantidad * this.precio;
     }
     
-    // precioTotal=()=>{
-    //     let totalReduce = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
-    //     // document.getElementById('total').innerText = totalReduce;
-    //     return totalReduce;
-    //j }
+    
 
 }
 
