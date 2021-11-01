@@ -1,10 +1,10 @@
 class Vinilo {
-    constructor(id, nombre, precio, img, genero) {
+    constructor(id, nombre, precio, img, genero, cantidad) {
         this.id = parseInt(id);
         this.nombre = nombre;
         this.precio = parseFloat(precio);
         this.img = img;
-        this.cantidad = 1;
+        this.cantidad = cantidad || 1;
         this.genero = genero;
         
     }
@@ -157,7 +157,7 @@ function carritoMusica(musicas) {
                         
                         `
             document.getElementById('containerProductos').appendChild(tr)
-
+            actualizarPrecio()
     }
 
     
@@ -253,7 +253,6 @@ function carritoMusica(musicas) {
     $(document).ready(function () {
         if("carrito" in localStorage){
             const datos= JSON.parse(localStorage.getItem('carrito'));
-            localStorage.setItem('carrito', JSON.stringify(carrito));
             for (const objeto of datos) {
                 carrito.push(new Vinilo(objeto.id, objeto.nombre, objeto.precio, objeto.img, objeto.genero, objeto.cantidad))
                 
